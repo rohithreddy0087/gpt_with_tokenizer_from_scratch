@@ -92,7 +92,8 @@ class Tokenizer:
         tokens = list(map(int, encoded))
         while len(tokens)>=2:
             common_pairs = self.get_common_pairs(tokens)
-            # Gives the minimum token number pair from the trained merges based on the common pairs in the given text
+            # Gives the pair corresponding to the minimum token number (means the new token number with highest occurings in the training set) 
+            # from the trained merges based on the common pairs in the given text
             pair = min(common_pairs, key=lambda p: self.merges.get(p, float("inf")))
             if pair in self.merges:
                 tokens = self.merge(tokens, pair, self.merges[pair])
